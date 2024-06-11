@@ -1,42 +1,74 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+/*
+    header:
+        logo
+        Nav Items
+    body:
+        Search
+        Restaurant Container:
+            Restaurant Card:
+                Name of resturant
+                Image
+                Rating
+                Cuisines
+                Cost of 2
+                Delivery Time
+    Footer
+        Copyright
+        Links
+        Address
+        Contact
+*/
 
-// JSX (Transpiled before it reaches the JS) - Parcel - Babel
-// JSX => React.createElement => ReactElement(JS Object) => HTMLElement(render)
+const Header = () => {
+  return (
+    <div className="header">
+      <div>
+        <img className="logo" src="C:\Users\dheeraj.kushwah\Desktop\NamasteReactJS\src\logo192.png" alt="Logo" />
+      </div>
+      <div className="nav-items">
+        <ul>
+          <li>Home</li>
+          <li>About Us</li>
+          <li>Contact</li>
+          <li>Cart</li>
+        </ul>
+      </div>
+    </div>
+  );
+};
 
-// React Element
-const heading = <h1 id="heading">Namaste React2</h1>;
+const ResturantCard = () =>{
+    return(
+        <div className="res-card">
+            <h3>Meghana</h3>
 
-// React Functional Component
+        </div>
+    )
+}
 
-// const HeadingComponent1 = () => (
-//   <h1>React Functional Component1</h1>
-// );
+const RestaurantBody = () =>{
+    return(
+        <div className="resturantBody">
+            <div className="Search">Search</div>
+            <div className="res-container">
+                <ResturantCard/>
+            </div>
+        </div>
+    )
+}
 
-// const HeadingComponent2 = () => {
-//   return <h1>React Functional Component2</h1>;
-// };
-
-// const HeadingComponent3 = () => <h1>React Functional Component3</h1>;
-
-// all three HeadingComponent, HeadingComponent2 and HeadingComponent2 are all same
-// Mostly we use HeadingComponent1
-
-const title = <h2>Element here</h2>;
-
-const Title = () => <h2>Nested Component here</h2>;
-
-const number = 3500;
-
-const HeadingComponent = () => (
-  <div className="container">
-    <h1 className="heading">React Functional Component</h1>
-    <Title /> {/*Nested Component*/}
-    {title} {/*Element*/}
-    <h3>{number * 30 * 100}</h3>
-  </div>
-);
+const Applayout = () => {
+  return (
+    <div className="app">
+      <Header />
+      <Body/>
+      <Footer/>
+    </div>
+  );
+};
 
 // DOM Element
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<HeadingComponent />);
+root.render(<Applayout />);

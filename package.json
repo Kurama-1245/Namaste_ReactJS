@@ -1,35 +1,32 @@
 {
-  "name": "namaste-react",
+  "name": "namastereactjs",
   "version": "1.0.0",
-  "description": "Namaste React Practice",
+  "description": "Namaste React Course",
+  "main": "app.js",
   "scripts": {
-    "start":"parcel index.html",
-    "build":"parcel build index.html",
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
     "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kurama-1245/Namaste_ReactJS.git"
+    "url": ""
   },
   "keywords": [
-    "react"
+    "react",
+    "namasteReact"
   ],
-  "author": "Dheeraj Kushwah",
+  "author": "Dheeraj",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Kurama-1245/Namaste_ReactJS/issues"
-  },
-  "homepage": "https://github.com/Kurama-1245/Namaste_ReactJS#readme",
   "devDependencies": {
     "parcel": "^2.12.0",
     "process": "^0.11.10"
   },
   "dependencies": {
-    "browserslist": "^4.23.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
-  "browserslist":[
-    "last 4 version"
-  ]
+  "browsersList":[
+    "last 4 versions"
+  ]  
 }

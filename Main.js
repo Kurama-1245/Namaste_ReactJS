@@ -43,7 +43,6 @@ const ResturantCard = () =>{
     return(
         <div className="res-card">
             <h3>Meghana</h3>
-
         </div>
     )
 }
@@ -63,8 +62,7 @@ const Applayout = () => {
   return (
     <div className="app">
       <Header />
-      <Body/>
-      <Footer/>
+      <RestaurantBody/>
     </div>
   );
 };

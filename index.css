@@ -1,23 +1,57 @@
 h1{
     color: red;
 }
+
 .header{
     display:flex;
     justify-content: space-between;
     border: 2px dotted black;
 }
-.logo{
-    width:fit-content;
+.div-logo{
     padding-left: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.logo{
+    height: 90px;
+}
+
 .nav-items > ul{
     display:flex;
     list-style-type: none;
     padding-right: 150px;
     
 }
+
 .nav-items > ul > li{
     padding: 10px;
     margin: 10px;
     font-size: 24px;
+}
+
+.res-card{
+    padding: 5px;
+    width: 210px;
+    margin: 5px;
+}
+
+.res-card:hover{
+    border: 2px dotted black;
+    cursor: pointer;
+
+}
+
+.Search{
+    padding: 10px;
+}
+.res-logo{
+    width: 93%;
+    border: 2px solid black;
+    margin: 5px;
+}
+.res-container{
+    display: flex;
+    flex-wrap: wrap;
 }

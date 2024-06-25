@@ -7,31 +7,29 @@ const RestaurantBody = () => {
   const [listOfResturants, setListOfResturants] = useState(restaurants);
   const [filteredList, setFilteredList] = useState(restaurants)
   const [searchText, setSearchText] = useState("");
+  // const [listOfResturants, setListOfResturants] = useState([]);
+  // const [filteredList, setFilteredList] = useState([])
 
-  console.log("Body Rendered");
   useEffect(() => {
     // fetchData();
   }, []);
 
+
   const fetchData = async () => {
     const jsonData = await fetch(
-      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.65200&lng=77.16630&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.71700&lng=75.83370&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
-    const data = await jsonData.json();
+    const fetchData = await jsonData.json();
     setListOfResturants(
-      data?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.resturants
-    );
+      fetchData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setFilteredList(
-      data?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.resturants
-    );
+      fetchData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     console.log(listOfResturants);
+    console.log(filteredList);
+
   };
 
-  // setTimeout(() => {
-  //   setListOfResturants(restaurants);
-  // }, 300);
-
-  return listOfResturants.length === 0 ? (
+  return filteredList.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="res-Body">

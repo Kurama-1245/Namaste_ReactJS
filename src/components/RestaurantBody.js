@@ -15,13 +15,16 @@ const RestaurantBody = () => {
 
   const fetchData = async () => {
     const jsonData = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.65200&lng=77.16630&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.65200&lng=77.16630&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const data = await jsonData.json();
-    console.log(data);
     setListOfResturants(
-      data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.resturants
+      data?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.resturants
     );
+    setFilteredList(
+      data?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.resturants
+    );
+    console.log(listOfResturants);
   };
 
   // setTimeout(() => {

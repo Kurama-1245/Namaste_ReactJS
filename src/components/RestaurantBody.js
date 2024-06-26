@@ -14,7 +14,6 @@ const RestaurantBody = () => {
     // fetchData();
   }, []);
 
-
   const fetchData = async () => {
     const jsonData = await fetch(
       "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.71700&lng=75.83370&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
@@ -28,6 +27,13 @@ const RestaurantBody = () => {
     console.log(filteredList);
 
   };
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setFilteredList(restaurants)
+  //     setListOfResturants(restaurants)
+  //   }, 1000);
+  // }, []);
+
 
   return filteredList.length === 0 ? (
     <Shimmer />

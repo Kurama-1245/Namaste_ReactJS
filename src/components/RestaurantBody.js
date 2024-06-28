@@ -6,22 +6,22 @@ import { Link } from "react-router-dom";
 import { MAIN_URL } from "../utils/constants";
 
 const RestaurantBody = () => {
-  const [listOfResturants, setListOfResturants] = useState(restaurants);
-  const [filteredList, setFilteredList] = useState(restaurants);
+  // const [listOfResturants, setListOfResturants] = useState(restaurants);
+  // const [filteredList, setFilteredList] = useState(restaurants);
   const [searchText, setSearchText] = useState("");
-  // const [listOfResturants, setListOfResturants] = useState([]);
-  // const [filteredList, setFilteredList] = useState([])
+  const [listOfResturants, setListOfResturants] = useState([]);
+  const [filteredList, setFilteredList] = useState([])
 
   useEffect(() => {
-    // fetchData();
+    fetchData();
   }, []);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setFilteredList(restaurants)
-  //     setListOfResturants(restaurants)
-  //   }, 1000);
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      setFilteredList(restaurants)
+      setListOfResturants(restaurants)
+    }, 1000);
+  }, []);
 
   const fetchData = async () => {
     const jsonData = await fetch(MAIN_URL);
@@ -34,6 +34,7 @@ const RestaurantBody = () => {
       fetchData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
+    console.log("Hello");
     console.log(listOfResturants);
     console.log(filteredList);
   };

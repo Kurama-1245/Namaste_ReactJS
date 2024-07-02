@@ -18,10 +18,6 @@ a:active {
 
 }
 
-h1 {
-  color: red;
-}
-
 .header {
   display: flex;
   justify-content: space-between;
@@ -97,4 +93,8 @@ h1 {
 }
 .header-link {
   text-decoration: none;
+}
+.user-card{
+  padding: 10px;
+  border: 1px solid Black;
 }

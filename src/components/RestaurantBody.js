@@ -83,7 +83,7 @@ const RestaurantBody = () => {
         {filteredList.map((restaurant) => (
           // not  using keys(not acceptable) <<<< index as keys <<<< Unique Id as keys(best practice)
           <Link key={restaurant.info.id} to={"/restaurant/"+restaurant.info.id}>
-            <ResturantCard resData={restaurant} />
+            <ResturantCard key={restaurant.info.id} resData={restaurant} />
           </Link>
         ))}
       </div>

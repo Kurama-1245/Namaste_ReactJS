@@ -19,7 +19,7 @@ import Shimmer from "./components/Shimmer.js";
 // all these are same thing
 
 const Grocery = lazy(()=> import("./components/Grocery"))
-const about = lazy(()=>import("./components/About"))
+const About = lazy(()=>import("./components/About"))
 const Applayout = () => {
   return (
     <div className="app">

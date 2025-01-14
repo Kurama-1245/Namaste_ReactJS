@@ -23,13 +23,13 @@ class UserClass extends React.Component {
         })
     }
 
-    componentDidUpdate(){
-        console.log("componenetDidUpdate Called");        
-    }
+    // componentDidUpdate(){
+    //     console.log("componenetDidUpdate Called");        
+    // }
 
-    componentWillUnmount(){
-        console.log("componenetWillUnmount Called");
-    }
+    // componentWillUnmount(){
+    //     console.log("componenetWillUnmount Called");
+    // }
 
     render() {
         // const { name, location } = this.props

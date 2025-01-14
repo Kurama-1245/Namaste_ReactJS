@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-const User = (props) =>{
+const User = ({name,location}) =>{
     const [count,setCount] = useState(0)
-    const {name, location} = props
 
     const increaseCount = () =>{
         setCount(count+1)
@@ -16,4 +15,5 @@ const User = (props) =>{
         </div>
     )
 }
+
 export default User;

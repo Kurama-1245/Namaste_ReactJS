@@ -11,17 +11,10 @@ const RestaurantBody = () => {
   // const [filteredList, setFilteredList] = useState(restaurants);
   const [searchText, setSearchText] = useState("");
   const [listOfResturants, setListOfResturants] = useState([]);
-  const [filteredList, setFilteredList] = useState([])
+  // const [filteredList, setFilteredList] = useState([]);
 
   useEffect(() => {
     fetchData();
-  }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setFilteredList(restaurants)
-      setListOfResturants(restaurants)
-    }, 1000);
   }, []);
 
   const fetchData = async () => {
@@ -31,35 +24,41 @@ const RestaurantBody = () => {
       fetchData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
-    setFilteredList(
-      fetchData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
+
+    // setFilteredList(
+    //   fetchData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+    //     ?.restaurants
+    // );
     // console.log("Hello");
-    // console.log(listOfResturants);
+    console.log(listOfResturants);
     // console.log(filteredList);
   };
 
-  const onlineStatus = useOnlineStatus()
+  const onlineStatus = useOnlineStatus();
   if (!onlineStatus) {
-    return <h1>Looks Like you are offline!!! please check your Internet Connection</h1>;
-  }  
+    return (
+      <h1>
+        Looks Like you are offline!!! please check your Internet Connection
+      </h1>
+    );
+  }
 
-  return filteredList.length === 0 ? (
+  return listOfResturants.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="res-Body">
-      <div className="filter">
+    <>
+      <div className="flex">
         <div className="search">
           <input
             type="text"
-            className="search-box"
+            className="border border-solid border-black mx-4"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           />
           <button
+            className="mt-4 ml-4 px-4 bg-green-100 rounded-lg"
             onClick={() => {
               // Filter the resturants and Update the UI
               // Search Text
@@ -73,7 +72,7 @@ const RestaurantBody = () => {
           </button>
         </div>
         <button
-          className="filter-btn"
+          className="mt-4 ml-4 px-4 bg-purple-200 rounded-lg"
           onClick={() => {
             const filterRestaurants = filteredList.filter(
               (res) => res.info.avgRating > 4.2
@@ -85,15 +84,17 @@ const RestaurantBody = () => {
           Top Rated
         </button>
       </div>
-      <div className="res-container">
-        {filteredList.map((restaurant) => (
+      <div className="m-4 flex flex-wrap justify-evenly">
+        {listOfResturants.map((restaurant) => (
           // not  using keys(not acceptable) <<<< index as keys <<<< Unique Id as keys(best practice)
-          <Link key={restaurant.info.id} to={"/restaurant/"+restaurant.info.id}>
+          <Link
+            key={restaurant.info.id}
+            to={"/restaurant/" + restaurant.info.id}>
             <ResturantCard key={restaurant.info.id} resData={restaurant} />
           </Link>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

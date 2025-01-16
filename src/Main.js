@@ -1,56 +1,76 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
-import Header from "./components/Header.js"
+import Header from "./components/Header.js";
 import RestaurantBody from "./components/RestaurantBody";
-import Header from "./components/Header"
-import RestaurantBody from "./components/RestaurantBody"
-import Contact from "./components/Contact"
-import Error from "./components/Error"
-import RestaurantMenu from "./components/RestaurantMenu.js"
+import Header from "./components/Header";
+import RestaurantBody from "./components/RestaurantBody";
+import Contact from "./components/Contact";
+import Error from "./components/Error";
+import RestaurantMenu from "./components/RestaurantMenu.js";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-
-const Grocery = lazy(()=> import("./components/Grocery"))
-const About = lazy(()=>import("./components/About"))
+import UserContext from "./utils/UserContext.js";
+const Grocery = lazy(() => import("./components/Grocery"));
+const About = lazy(() => import("./components/About"));
 
 const Applayout = () => {
+  const [userName, setUserName] = useState(null);
+
+  // Autentication code written here
+  useEffect(() => {
+    // Make an api call and send usename and password
+    const data = {
+      name: "Dheeraj Kushwah",
+    };
+    setUserName(data.name);
+  }, []);
+
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
+    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+      <div className="app">
+        <Header />
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <Applayout/>,
-    children:[
+    element: <Applayout />,
+    children: [
       {
-        path:"/",
-        element:<RestaurantBody/>
+        path: "/",
+        element: <RestaurantBody />,
       },
       {
-        path:"/about",
-        element:<Suspense fallback={<h1>Loading!.....</h1>}><About/></Suspense>
+        path: "/about",
+        element: (
+          <Suspense fallback={<h1>Loading!.....</h1>}>
+            <About />
+          </Suspense>
+        ),
       },
       {
-        path:"/contact",
-        element:<Contact/>
+        path: "/contact",
+        element: <Contact />,
       },
       {
-        path:"/grocery",
-        element:<Suspense fallback={<h1>Loading!.....</h1>}><Grocery/></Suspense>
+        path: "/grocery",
+        element: (
+          <Suspense fallback={<h1>Loading!.....</h1>}>
+            <Grocery />
+          </Suspense>
+        ),
       },
       {
-        path:"/restaurant/:resID",
-        element:<RestaurantMenu/>
-      }
+        path: "/restaurant/:resID",
+        element: <RestaurantMenu />,
+      },
     ],
-    errorElement:<Error/>,
-  }
-])
+    errorElement: <Error />,
+  },
+]);
 
-
-const root = ReactDOM.createRoot(document.getElementById("root"))
-root.render(<RouterProvider router={appRouter} />)
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<RouterProvider router={appRouter} />);

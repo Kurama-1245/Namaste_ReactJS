@@ -1,21 +1,22 @@
 import restaurants from "../utils/mockData";
-import ResturantCard from "./ResturantCard";
-import { useEffect, useState } from "react";
+import ResturantCard, { withPromotedlabel } from "./ResturantCard";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import { MAIN_URL } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext.js";
 
 const RestaurantBody = () => {
-  // const [listOfResturants, setListOfResturants] = useState(restaurants);
-  // const [filteredList, setFilteredList] = useState(restaurants);
   const [searchText, setSearchText] = useState("");
   const [listOfResturants, setListOfResturants] = useState([]);
-  // const [filteredList, setFilteredList] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const onlineStatus = useOnlineStatus();
+  
+  const ResturantCardPromoted = withPromotedlabel(ResturantCard);
+  
+  const { setUserName, loggedInUser } = useContext(UserContext);
 
   const fetchData = async () => {
     const jsonData = await fetch(MAIN_URL);
@@ -24,17 +25,16 @@ const RestaurantBody = () => {
       fetchData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
-
-    // setFilteredList(
-    //   fetchData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-    //     ?.restaurants
-    // );
-    // console.log("Hello");
-    console.log(listOfResturants);
-    // console.log(filteredList);
+    setFilteredList(
+      fetchData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
   };
 
-  const onlineStatus = useOnlineStatus();
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   if (!onlineStatus) {
     return (
       <h1>
@@ -42,6 +42,8 @@ const RestaurantBody = () => {
       </h1>
     );
   }
+
+  // console.log("List of Resturant: ", listOfResturants);
 
   return listOfResturants.length === 0 ? (
     <Shimmer />
@@ -78,19 +80,34 @@ const RestaurantBody = () => {
               (res) => res.info.avgRating > 4.2
             );
             setFilteredList(filterRestaurants);
-            console.log(filterRestaurants);
           }}
         >
           Top Rated
         </button>
+        <div className="mt-4 ml-4 px-4">
+          <label>UserName: </label>
+          <input
+            className="border border-black rounded"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
       </div>
       <div className="m-4 flex flex-wrap justify-evenly">
-        {listOfResturants.map((restaurant) => (
+        {filteredList.map((restaurant) => (
           // not  using keys(not acceptable) <<<< index as keys <<<< Unique Id as keys(best practice)
           <Link
             key={restaurant.info.id}
-            to={"/restaurant/" + restaurant.info.id}>
-            <ResturantCard key={restaurant.info.id} resData={restaurant} />
+            to={`/restaurant/${restaurant.info.id}`}
+          >
+            {restaurant.info.isOpen ? (
+              <ResturantCardPromoted
+                key={restaurant.info.id}
+                resData={restaurant}
+              />
+            ) : (
+              <ResturantCard key={restaurant.info.id} resData={restaurant} />
+            )}
           </Link>
         ))}
       </div>

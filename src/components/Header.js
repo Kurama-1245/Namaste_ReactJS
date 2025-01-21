@@ -15,7 +15,7 @@ const Header = () => {
 
   // subscribing to the store using selector
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems);
+  // console.log(cartItems);
 
   return (
     <div className="flex justify-between bg-pink-100 shadow-lg ">
@@ -42,14 +42,14 @@ const Header = () => {
           <li className="px-4 font-bold">
             <Link to="/cart">Cart {cartItems.length}</Link>
           </li>
-          {/* <button
+          <button
             className="login"
             onClick={() => {
               btnName === "Login" ? setBtnName("Logout") : setBtnName("Login");
             }}
           >
             {btnName}
-          </button> */}
+          </button>
           <li className="px-4 font-bold">{data.loggedInUser}</li>
         </ul>
       </div>

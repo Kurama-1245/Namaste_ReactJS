@@ -43,7 +43,7 @@ const RestaurantBody = () => {
     );
   }
 
-  // console.log("List of Resturant: ", listOfResturants);
+  console.log("List of Resturant: ", listOfResturants);
 
   return listOfResturants.length === 0 ? (
     <Shimmer />

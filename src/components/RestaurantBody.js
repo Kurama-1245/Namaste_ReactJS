@@ -53,13 +53,15 @@ const RestaurantBody = () => {
         <div className="search">
           <input
             type="text"
-            className="border border-solid border-black mx-4"
+            data-testid="searchInput"
+            className="border border-black mx-4"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           />
           <button
+          data-testid="resSearchButton"
             className="mt-4 ml-4 px-4 bg-green-100 rounded-lg"
             onClick={() => {
               // Filter the resturants and Update the UI
@@ -74,6 +76,7 @@ const RestaurantBody = () => {
           </button>
         </div>
         <button
+        data-testid="resSortButton"
           className="mt-4 ml-4 px-4 bg-purple-200 rounded-lg"
           onClick={() => {
             const filterRestaurants = filteredList.filter(
